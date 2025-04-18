@@ -1,5 +1,5 @@
 -- main module file
-local module = require("plugin_name.module")
+local module = require("juggle.module")
 
 ---@class Config
 ---@field opt string Your config option
@@ -18,10 +18,8 @@ M.config = config
 -- you can also put some validation here for those.
 M.setup = function(args)
   M.config = vim.tbl_deep_extend("force", M.config, args or {})
-end
-
-M.hello = function()
-  return module.my_first_function(M.config.opt)
+  print('hit')
+  vim.api.nvim_create_user_command("ToggleSyntax", module.toggle_arrow_function_under_cursor, {})
 end
 
 return M
